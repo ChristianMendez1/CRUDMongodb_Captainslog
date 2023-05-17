@@ -27,17 +27,16 @@ app.get('/logs', (req, res)=>{
 });
 
 
-app.post(('/logs'), (req, res) => {
+app.post('/logs/', (req, res)=>{
     if(req.body.shipIsBroken === 'on'){
         req.body.shipIsBroken = true;
     } else {
         req.body.shipIsBroken = false;
     }
-    logs.create(req.body)
-    .then((result) => {
-        res.redirect('/logs/Show')
-    })
-})
+    logs.create(req.body, (error, createdLogs)=>{
+        res.redirect('/logs');
+    });
+});
 
 app.get(('/logs/new'), (req, res) => {
     res.render('New')
@@ -54,6 +53,14 @@ app.get('/logs/seed', (req, res)=>{
     .then((result) => {
         res.redirect('/logs')
     })
+});
+
+app.get('/logs/:id', (req, res)=>{
+    logs.findById(req.params.id, (err, foundLogs)=>{
+        res.render('Show', {
+            logs:foundLogs
+        });
+    });
 });
 
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });

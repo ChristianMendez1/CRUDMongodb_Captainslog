@@ -11,9 +11,7 @@ class Index extends React.Component {
                     {this.props.logs.map((log, x) => {
                         return(
                             <li>
-                                <ul>
-                                    title: {log.title}
-                                </ul>
+                                title: <a href={`/logs/${log.id}`}>{log.title}</a>
                             </li>
                         )
                     })}
