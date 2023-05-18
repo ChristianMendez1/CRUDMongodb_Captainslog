@@ -1,7 +1,15 @@
 const express = require('express');
 let router = express.Router();
-const logs = require('../models/logs.js')
+const logs = require('../models/logs.js');
 const methodOverride = require('method-override');
+const dogsSeed = require('../data/seed');
+
+const index = async (req, res) => {
+    res.json(await logs.find({}))
+}
+const seed = async (req, res) => {
+    res.json(await logs.create(dogsSeed))
+}
 
 router.use(methodOverride('_method'));
 router.use(express.urlencoded({extended:false}));
@@ -28,6 +36,8 @@ router.route('/')
 router.get(('/new'), (req, res) => {
     res.render('New')
 })
+
+router.get('/seed', seed)
 
 router.route('/:id')
 .get((req, res)=>{
