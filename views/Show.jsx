@@ -8,15 +8,15 @@ class Show extends React.Component {
                 <nav>
                     <a href='/logs/'>back</a>
                 </nav>
-                <ul>
-                    title: {logs.title}<br></br>
-                    entry: {logs.entry}<br></br>
-                    ship status: {
+                <ul><h2>
+                    Title: {logs.title.toUpperCase()}<br></br>
+                    Entry: {logs.entry.toUpperCase()}<br></br>
+                    Ship-Functionality: {
                         logs.shipIsBroken?
-                        'ship is broken':
-                        'ship is not broken'
+                        'SHIP IS NOT FUNCTIONAL':
+                        'SHIP IS FUNCTIONAL'
                     }
-                </ul>
+                </h2></ul>
             </div>
         )
     }
