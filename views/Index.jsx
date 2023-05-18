@@ -22,6 +22,7 @@ class Index extends React.Component {
                         )
                     })}
                 </ul>
+                <a href='/'>back</a>
             </DefaultLayout>
         )
     }
